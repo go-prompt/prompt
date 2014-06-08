@@ -18,7 +18,7 @@ import (
 
 func main() {
 
-    my_cmd := got.Command{
+    my_cmd := prompt.Command{
         "ping",
         "just an example",
         func() {
@@ -26,9 +26,9 @@ func main() {
         },
     }
 
-    got.Add(my_cmd)
+    prompt.Add(my_cmd)
 
-    <-got.Start()
+    <-prompt.Start()
     // if you don't need to lock, just remove the '<-' operator
 
     fmt.Println("Bye from main!")
