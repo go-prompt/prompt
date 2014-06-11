@@ -20,7 +20,7 @@ func start(control chan bool) {
 		if scanner.Scan() {
 			command := Parse(scanner.Text())
 			stoped = command.Run()
-		} else {
+		} else { // CONTROL-C
 			stoped = true
 		}
 	}
@@ -40,5 +40,11 @@ func Start() chan bool {
 }
 
 func Add(c Command) {
+
 	commands = append(commands, c)
+}
+
+func AddCommand(name string, desc string, action func()) {
+
+	commands = append(commands, Command{name, desc, action})
 }
