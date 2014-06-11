@@ -58,12 +58,12 @@ func builtinCommand(c *Command) {
 			fmt.Println("# Logical CPUs:", runtime.NumCPU())
 			fmt.Println("# Goroutines  :", runtime.NumGoroutine())
 			fmt.Println("# Memory")
-			fmt.Println("#- Allocated (bytes)")
-			fmt.Println("# |- General:", s.Alloc)
-			fmt.Println("# |- Heap   :", s.HeapAlloc)
-			fmt.Println("#- Number of")
-			fmt.Println("# |- Mallocs:", s.Mallocs)
-			fmt.Println("# |- Frees  :", s.Frees)
+			fmt.Println("# |- Allocated (bytes)")
+			fmt.Println("# | |- General:", s.Alloc)
+			fmt.Println("# | |- Heap   :", s.HeapAlloc)
+			fmt.Println("# |- Number of")
+			fmt.Println("#   |- Mallocs:", s.Mallocs)
+			fmt.Println("#   |- Frees  :", s.Frees)
 			fmt.Println("###")
 		}
 	}
