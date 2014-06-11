@@ -47,9 +47,11 @@ func Parse(txt string) *Command {
 }
 
 func builtinCommand(c *Command) {
-	if c.Cmd == "" {
+
+	switch c.Cmd {
+	case "":
 		c.Action = func() {}
-	} else if c.Cmd == "runtime" || c.Cmd == "r" {
+	case "runtime", "r":
 		c.Action = func() {
 			var s runtime.MemStats
 			runtime.ReadMemStats(&s)
