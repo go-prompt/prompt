@@ -2,8 +2,16 @@ package prompt
 
 import (
 	"fmt"
-	"runtime"
+	"sort"
 )
+
+type CommandList []Command
+
+func (c CommandList) Len() int           { return len(c) }
+func (a CommandList) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
+func (a CommandList) Less(i, j int) bool { return a[i].Cmd < a[j].Cmd }
+
+var commands CommandList
 
 type Command struct {
 	Cmd    string
@@ -11,13 +19,24 @@ type Command struct {
 	Action func()
 }
 
-func (c *Command) Run() bool {
+func Add(c Command) {
+
+	commands = append(commands, c)
+	sort.Sort(commands)
+}
+
+func AddCommand(name string, desc string, action func()) {
+
+	Add(Command{name, desc, action})
+}
+
+func (c *Command) run() bool {
 
 	if c.Cmd == "quit" {
 		return true
+	} else if c.Cmd == "" {
+		return false
 	}
-
-	builtinCommand(c)
 
 	if c.Action != nil {
 
@@ -31,11 +50,11 @@ func (c *Command) Run() bool {
 		return false
 	}
 
-	fmt.Printf("%s: command not found.\n", c.Cmd)
+	fmt.Printf("%s: command not found. Try 'help'.\n", c.Cmd)
 	return false
 }
 
-func Parse(txt string) *Command {
+func parse(txt string) *Command {
 
 	for _, cmd := range commands {
 		if cmd.Cmd == txt {
@@ -44,29 +63,4 @@ func Parse(txt string) *Command {
 	}
 
 	return &Command{Cmd: txt, Action: nil}
-}
-
-func builtinCommand(c *Command) {
-
-	switch c.Cmd {
-	case "":
-		c.Action = func() {}
-	case "runtime", "r":
-		c.Action = func() {
-			var s runtime.MemStats
-			runtime.ReadMemStats(&s)
-
-			fmt.Println("###")
-			fmt.Println("# Logical CPUs:", runtime.NumCPU())
-			fmt.Println("# Goroutines  :", runtime.NumGoroutine())
-			fmt.Println("# Memory")
-			fmt.Println("# |- Allocated (bytes)")
-			fmt.Println("# | |- General:", s.Alloc)
-			fmt.Println("# | |- Heap   :", s.HeapAlloc)
-			fmt.Println("# |- Number of")
-			fmt.Println("#   |- Mallocs:", s.Mallocs)
-			fmt.Println("#   |- Frees  :", s.Frees)
-			fmt.Println("###")
-		}
-	}
 }

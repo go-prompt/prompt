@@ -18,15 +18,13 @@ import (
 
 func main() {
 
-    my_cmd := prompt.Command{
+    prompt.AddCommand(
         "ping",
-        "just an example",
+        "my custom command",
         func() {
             fmt.Println("pong!")
         },
-    }
-
-    prompt.Add(my_cmd)
+    )
 
     <-prompt.Start()
     // if you don't need to lock, just remove the '<-' operator

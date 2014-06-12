@@ -4,11 +4,19 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"runtime"
 )
 
-var commands []Command
+func Start() chan bool {
+
+	control := make(chan bool)
+	go start(control)
+	return control
+}
 
 func start(control chan bool) {
+
+	builtinCommands()
 
 	scanner := bufio.NewScanner(os.Stdin)
 
@@ -18,8 +26,8 @@ func start(control chan bool) {
 
 		fmt.Print("> ")
 		if scanner.Scan() {
-			command := Parse(scanner.Text())
-			stoped = command.Run()
+			command := parse(scanner.Text())
+			stoped = command.run()
 		} else { // CONTROL-C
 			stoped = true
 		}
@@ -32,19 +40,38 @@ func start(control chan bool) {
 	control <- true
 }
 
-func Start() chan bool {
+func builtinCommands() {
 
-	control := make(chan bool)
-	go start(control)
-	return control
-}
+	AddCommand("help", "well, I guess you already know.",
+		func() {
+			for _, c := range commands {
+				fmt.Printf("%20s - %s\n", c.Cmd, c.Desc)
+			}
+		})
 
-func Add(c Command) {
+	AddCommand("runtime", "display runtime information.",
+		func() {
+			var s runtime.MemStats
+			runtime.ReadMemStats(&s)
 
-	commands = append(commands, c)
-}
+			fmt.Println("###")
+			fmt.Println("# Logical CPUs:", runtime.NumCPU())
+			fmt.Println("# Goroutines  :", runtime.NumGoroutine())
+			fmt.Println("# Memory")
+			fmt.Println("# |- Allocated (bytes)")
+			fmt.Println("# | |- General:", s.Alloc)
+			fmt.Println("# | |- Heap   :", s.HeapAlloc)
+			fmt.Println("# |- Number of")
+			fmt.Println("#   |- Mallocs:", s.Mallocs)
+			fmt.Println("#   |- Frees  :", s.Frees)
+			fmt.Println("###")
+		})
 
-func AddCommand(name string, desc string, action func()) {
+	AddCommand("gc", "call garbage collector.",
+		func() {
+			runtime.GC()
+			fmt.Println("GC called.")
+		})
 
-	commands = append(commands, Command{name, desc, action})
+	AddCommand("quit", "close prompt.", func() {})
 }
