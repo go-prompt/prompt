@@ -33,7 +33,7 @@ func main() {
 }
 ~~~
 
-This will show a prompt, where you can try your custom command 'ping'. Or just type 'quit' to close it.
+This will show a prompt, where you can try your custom command 'ping'. Or just type 'quit' to close it. For a list of commands type 'help'.
 
 #TODO
 - [ ] help/list commands
