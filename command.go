@@ -8,8 +8,8 @@ import (
 type CommandList []Command
 
 func (c CommandList) Len() int           { return len(c) }
-func (a CommandList) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
-func (a CommandList) Less(i, j int) bool { return a[i].Cmd < a[j].Cmd }
+func (c CommandList) Swap(i, j int)      { c[i], c[j] = c[j], c[i] }
+func (c CommandList) Less(i, j int) bool { return c[i].Cmd < c[j].Cmd }
 
 var commands CommandList
 
@@ -42,7 +42,7 @@ func (c *Command) run() bool {
 
 		defer func() { // handling panic
 			if r := recover(); r != nil {
-				fmt.Println(r)
+				fmt.Println("Ops! ["+c.Cmd+"] -", r)
 			}
 		}()
 
