@@ -54,17 +54,17 @@ func builtinCommands() {
 			var s runtime.MemStats
 			runtime.ReadMemStats(&s)
 
-			fmt.Println("###")
-			fmt.Println("# Logical CPUs:", runtime.NumCPU())
-			fmt.Println("# Goroutines  :", runtime.NumGoroutine())
-			fmt.Println("# Memory")
-			fmt.Println("# |- Allocated (bytes)")
-			fmt.Println("# | |- General:", s.Alloc)
-			fmt.Println("# | |- Heap   :", s.HeapAlloc)
-			fmt.Println("# |- Number of")
-			fmt.Println("#   |- Mallocs:", s.Mallocs)
-			fmt.Println("#   |- Frees  :", s.Frees)
-			fmt.Println("###")
+			fmt.Println()
+			fmt.Println(" Logical CPUs:", runtime.NumCPU())
+			fmt.Println(" Goroutines  :", runtime.NumGoroutine())
+			fmt.Println(" Memory")
+			fmt.Println("  * Allocated (bytes)")
+			fmt.Println("   - general:", s.Alloc)
+			fmt.Println("   - heap   :", s.HeapAlloc)
+			fmt.Println("  * Number of")
+			fmt.Println("   - mallocs:", s.Mallocs)
+			fmt.Println("   - frees  :", s.Frees)
+			fmt.Println()
 		})
 
 	AddCommand("gc", "call garbage collector.",
