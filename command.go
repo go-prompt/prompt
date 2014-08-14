@@ -5,29 +5,11 @@ import (
 	"sort"
 )
 
-type CommandList []Command
-
-func (c CommandList) Len() int           { return len(c) }
-func (c CommandList) Swap(i, j int)      { c[i], c[j] = c[j], c[i] }
-func (c CommandList) Less(i, j int) bool { return c[i].Cmd < c[j].Cmd }
-
-var commands CommandList
-
+// Command is a representation of a valid command.
 type Command struct {
 	Cmd    string
 	Desc   string
 	Action func()
-}
-
-func Add(c Command) {
-
-	commands = append(commands, c)
-	sort.Sort(commands)
-}
-
-func AddCommand(name string, desc string, action func()) {
-
-	Add(Command{name, desc, action})
 }
 
 func (c *Command) run() bool {
@@ -54,7 +36,15 @@ func (c *Command) run() bool {
 	return false
 }
 
-func parse(txt string) *Command {
+type commandList []Command
+
+func (c commandList) Len() int           { return len(c) }
+func (c commandList) Swap(i, j int)      { c[i], c[j] = c[j], c[i] }
+func (c commandList) Less(i, j int) bool { return c[i].Cmd < c[j].Cmd }
+
+var commands commandList
+
+func findCommand(txt string) *Command {
 
 	for _, cmd := range commands {
 		if cmd.Cmd == txt {
@@ -63,4 +53,17 @@ func parse(txt string) *Command {
 	}
 
 	return &Command{Cmd: txt, Action: nil}
+}
+
+// Add provides a new Command.
+func Add(c Command) {
+
+	commands = append(commands, c)
+	sort.Sort(commands)
+}
+
+// AddCommand constructs a new Command and provides it.
+func AddCommand(name string, desc string, action func()) {
+
+	Add(Command{name, desc, action})
 }

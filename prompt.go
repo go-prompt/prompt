@@ -1,3 +1,4 @@
+// Package prompt provides a 'terminal-prompt-like' for your application.
 package prompt
 
 import (
@@ -7,6 +8,8 @@ import (
 	"runtime"
 )
 
+// Start initialize the prompt in a new goroutine.
+// Returns a boolean channel to control/synchronize your app flow (if appropriate).
 func Start() chan bool {
 
 	control := make(chan bool)
@@ -26,7 +29,7 @@ func start(control chan bool) {
 
 		fmt.Print("> ")
 		if scanner.Scan() {
-			command := parse(scanner.Text())
+			command := findCommand(scanner.Text())
 			stoped = command.run()
 		} else { // CONTROL-C
 			stoped = true
