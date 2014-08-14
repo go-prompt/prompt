@@ -7,6 +7,8 @@ import (
 	"runtime"
 )
 
+// Start initialize the prompt in a new goroutine.
+// Returns a boolean channel to control/synchronize your app flow (if appropriate).
 func Start() chan bool {
 
 	control := make(chan bool)
@@ -26,7 +28,7 @@ func start(control chan bool) {
 
 		fmt.Print("> ")
 		if scanner.Scan() {
-			command := parse(scanner.Text())
+			command := findCommand(scanner.Text())
 			stoped = command.run()
 		} else { // CONTROL-C
 			stoped = true
@@ -54,17 +56,17 @@ func builtinCommands() {
 			var s runtime.MemStats
 			runtime.ReadMemStats(&s)
 
-			fmt.Println("###")
-			fmt.Println("# Logical CPUs:", runtime.NumCPU())
-			fmt.Println("# Goroutines  :", runtime.NumGoroutine())
-			fmt.Println("# Memory")
-			fmt.Println("# |- Allocated (bytes)")
-			fmt.Println("# | |- General:", s.Alloc)
-			fmt.Println("# | |- Heap   :", s.HeapAlloc)
-			fmt.Println("# |- Number of")
-			fmt.Println("#   |- Mallocs:", s.Mallocs)
-			fmt.Println("#   |- Frees  :", s.Frees)
-			fmt.Println("###")
+			fmt.Println()
+			fmt.Println(" Logical CPUs:", runtime.NumCPU())
+			fmt.Println(" Goroutines  :", runtime.NumGoroutine())
+			fmt.Println(" Memory")
+			fmt.Println("  * Allocated (bytes)")
+			fmt.Println("   - general:", s.Alloc)
+			fmt.Println("   - heap   :", s.HeapAlloc)
+			fmt.Println("  * Number of")
+			fmt.Println("   - mallocs:", s.Mallocs)
+			fmt.Println("   - frees  :", s.Frees)
+			fmt.Println()
 		})
 
 	AddCommand("gc", "call garbage collector.",

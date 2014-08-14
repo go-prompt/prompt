@@ -1,5 +1,6 @@
-#What?
-Pimp your Go app with a dead simple prompt feature.
+#Prompt [![Build Status](https://travis-ci.org/viliamjr/prompt.svg?branch=master)](https://travis-ci.org/viliamjr/prompt)
+
+This Go package provides a dead simple 'terminal-prompt-like' for your application.
 
 #Install
 ~~~
@@ -36,6 +37,4 @@ func main() {
 This will show a prompt, where you can try your custom command 'ping'. Or just type 'quit' to close it. For a list of commands type 'help'.
 
 #TODO
-- [ ] help/list commands
-- [ ] some documentation in golang format
-- [ ] builtin commands (memory,threads,network?)
+- [ ] a wrapper for _exec.Command_ (from _os_ standard library).
