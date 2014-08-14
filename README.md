@@ -1,4 +1,5 @@
-#What?
+#Prompt [![Build Status](https://travis-ci.org/viliamjr/prompt.svg?branch=master)](https://travis-ci.org/viliamjr/prompt)
+
 This Go package provides a dead simple 'terminal-prompt-like' for your application.
 
 #Install
