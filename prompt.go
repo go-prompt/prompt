@@ -1,4 +1,3 @@
-// Package prompt provides a 'terminal-prompt-like' for your application.
 package prompt
 
 import (
