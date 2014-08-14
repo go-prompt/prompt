@@ -7,9 +7,9 @@ import (
 
 func ExampleAdd() {
 	cmd := prompt.Command{
-		"ping",
-		"just an example",
-		func() {
+		Cmd:  "ping",
+		Desc: "just an example",
+		Action: func() {
 			fmt.Println("pong!")
 		},
 	}
