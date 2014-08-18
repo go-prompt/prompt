@@ -2,6 +2,7 @@
 
 This Go package provides a dead simple 'terminal-prompt-like' for your application.
 
+
 #Install
 ~~~
 $ go get github.com/viliamjr/prompt
@@ -34,7 +35,7 @@ func main() {
 }
 ~~~
 
-This will show a prompt, where you can try your custom command 'ping'. Or just type 'quit' to close it. For a list of commands type 'help'.
+This example will show a _terminal-prompt-shell-like_, where you can try your custom command '**ping**'. Or just type '**quit**' to close it. For a list of commands type '**help**'. You can see this in action **[here](https://asciinema.org/a/11556)**.
 
 #TODO
 - [ ] a wrapper for _exec.Command_ (from _os_ standard library).
