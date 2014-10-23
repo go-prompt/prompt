@@ -9,5 +9,4 @@ install:
   - go get github.com/mattn/goveralls
 
 script:
-  - PATH="$HOME/gopath/bin:$PATH"
-  - script/coverage --coveralls
+  - goveralls
