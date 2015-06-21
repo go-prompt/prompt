@@ -2,7 +2,7 @@ package prompt_test
 
 import (
 	"fmt"
-	"github.com/viliamjr/prompt"
+	"github.com/go-prompt/prompt"
 )
 
 func ExampleAdd() {

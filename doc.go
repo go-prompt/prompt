@@ -9,7 +9,7 @@ See an example about how to add a custom command:
 
 	import (
 	    "fmt"
-	    "github.com/viliamjr/prompt"
+	    "gopkg.in/prompt.v1"
 	)
 
 	func main() {

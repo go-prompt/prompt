@@ -1,4 +1,4 @@
-#Prompt [![Build Status](https://travis-ci.org/viliamjr/prompt.svg?branch=master)](https://travis-ci.org/viliamjr/prompt) [![Coverage Status](https://img.shields.io/coveralls/viliamjr/prompt.svg)](https://coveralls.io/r/viliamjr/prompt) [![GoDoc](https://godoc.org/github.com/viliamjr/prompt?status.svg)](http://godoc.org/github.com/viliamjr/prompt)
+#Prompt [![Build Status](https://travis-ci.org/viliamjr/prompt.svg?branch=master)](https://travis-ci.org/viliamjr/prompt) [![Coverage Status](https://img.shields.io/coveralls/viliamjr/prompt.svg)](https://coveralls.io/r/viliamjr/prompt) [![GoDoc](https://godoc.org/github.com/go-prompt/prompt?status.svg)](http://godoc.org/github.com/go-prompt/prompt)
 
 This Go package provides a dead simple 'terminal-prompt-like' for your application.
 
@@ -6,7 +6,7 @@ This Go package provides a dead simple 'terminal-prompt-like' for your applicati
 #Install
 There is no extra dependencies, just a [Go environment](http://golang.org/doc/install) is needed. Then:
 ~~~
-$ go get github.com/viliamjr/prompt
+$ go get gopkg.in/prompt.v1
 ~~~
 
 #Use
@@ -16,7 +16,7 @@ package main
 
 import (
     "fmt"
-    "github.com/viliamjr/prompt"
+    "gopkg.in/prompt.v1"
 )
 
 func main() {
