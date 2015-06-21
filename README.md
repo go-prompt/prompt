@@ -1,4 +1,4 @@
-#Prompt [![Build Status](https://travis-ci.org/viliamjr/prompt.svg?branch=master)](https://travis-ci.org/viliamjr/prompt) [![Coverage Status](https://img.shields.io/coveralls/viliamjr/prompt.svg)](https://coveralls.io/r/viliamjr/prompt) [![GoDoc](https://godoc.org/github.com/go-prompt/prompt?status.svg)](http://godoc.org/github.com/go-prompt/prompt)
+#Prompt [![Build Status](https://travis-ci.org/go-prompt/prompt.svg?branch=master)](https://travis-ci.org/go-prompt/prompt) [![Coverage Status](https://img.shields.io/coveralls/viliamjr/prompt.svg)](https://coveralls.io/r/viliamjr/prompt) [![GoDoc](https://godoc.org/github.com/go-prompt/prompt?status.svg)](http://godoc.org/github.com/go-prompt/prompt)
 
 This Go package provides a dead simple 'terminal-prompt-like' for your application.
 
