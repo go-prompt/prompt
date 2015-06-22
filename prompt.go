@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"runtime"
+	"strings"
 )
 
 // Start initialize the prompt in a new goroutine.
@@ -28,8 +29,9 @@ func start(control chan bool) {
 
 		fmt.Print("> ")
 		if scanner.Scan() {
-			command := findCommand(scanner.Text())
-			stoped = command.run()
+			args := strings.Split(scanner.Text(), " ")
+			command := findCommand(args[0])
+			stoped = command.run(args[1:])
 		} else { // CONTROL-C
 			stoped = true
 		}
@@ -45,14 +47,14 @@ func start(control chan bool) {
 func builtinCommands() {
 
 	AddCommand("help", "well, I guess you already know.",
-		func() {
+		func(args []string) {
 			for _, c := range commands {
 				fmt.Printf("%20s - %s\n", c.Cmd, c.Desc)
 			}
 		})
 
 	AddCommand("runtime", "display runtime information.",
-		func() {
+		func(args []string) {
 			var s runtime.MemStats
 			runtime.ReadMemStats(&s)
 
@@ -70,10 +72,10 @@ func builtinCommands() {
 		})
 
 	AddCommand("gc", "call garbage collector.",
-		func() {
+		func(args []string) {
 			runtime.GC()
 			fmt.Println("GC called.")
 		})
 
-	AddCommand("quit", "close prompt.", func() {})
+	AddCommand("quit", "close prompt.", func(args []string) {})
 }
