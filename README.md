@@ -24,8 +24,8 @@ func main() {
     prompt.AddCommand(
         "ping",
         "my custom command",
-        func() {
-            fmt.Println("pong!")
+        func(args []string) {
+            fmt.Println("pong! Arguments:", args)
         },
     )
 

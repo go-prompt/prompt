@@ -17,8 +17,8 @@ See an example about how to add a custom command:
 	    prompt.AddCommand(
 	        "ping",
 	        "my custom command",
-	        func() {
-	            fmt.Println("pong!")
+	        func(args []string) {
+			fmt.Println("pong! Arguments:", args)
 	        },
 	    )
 
