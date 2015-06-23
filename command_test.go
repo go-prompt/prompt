@@ -9,7 +9,7 @@ func TestAdd(t *testing.T) {
 	my_cmd := Command{
 		"ping",
 		"just a test",
-		func() {},
+		func(args []string) {},
 	}
 
 	Add(my_cmd)
@@ -29,7 +29,7 @@ func TestAddCommand(t *testing.T) {
 	AddCommand(
 		"foo",
 		"another test",
-		func() {},
+		func(args []string) {},
 	)
 
 	if commands.Len() != 1 {
