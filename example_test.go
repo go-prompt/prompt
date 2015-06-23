@@ -2,6 +2,7 @@ package prompt_test
 
 import (
 	"fmt"
+
 	"github.com/go-prompt/prompt"
 )
 
@@ -9,8 +10,8 @@ func ExampleAdd() {
 	cmd := prompt.Command{
 		Cmd:  "ping",
 		Desc: "just an example",
-		Action: func() {
-			fmt.Println("pong!")
+		Action: func(args []string) {
+			fmt.Println("pong! Arguments:", args)
 		},
 	}
 
@@ -23,8 +24,8 @@ func ExampleAddCommand() {
 	prompt.AddCommand(
 		"ping",
 		"my custom command",
-		func() {
-			fmt.Println("pong!")
+		func(args []string) {
+			fmt.Println("pong! Arguments:", args)
 		},
 	)
 

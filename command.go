@@ -9,10 +9,10 @@ import (
 type Command struct {
 	Cmd    string
 	Desc   string
-	Action func()
+	Action func([]string)
 }
 
-func (c *Command) run() bool {
+func (c *Command) run(args []string) bool {
 
 	if c.Cmd == "quit" {
 		return true
@@ -28,7 +28,7 @@ func (c *Command) run() bool {
 			}
 		}()
 
-		c.Action()
+		c.Action(args)
 		return false
 	}
 
@@ -63,7 +63,7 @@ func Add(c Command) {
 }
 
 // AddCommand constructs a new Command and provides it.
-func AddCommand(name string, desc string, action func()) {
+func AddCommand(name string, desc string, action func([]string)) {
 
 	Add(Command{name, desc, action})
 }
