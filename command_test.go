@@ -6,38 +6,31 @@ import (
 
 func TestAdd(t *testing.T) {
 
-	my_cmd := Command{
+	myCmd := Command{
 		"ping",
 		"just a test",
 		func(args []string) {},
 	}
 
-	Add(my_cmd)
+	Add(myCmd)
 
-	if commands.Len() != 1 {
-		t.Error("The command wasn't added")
-	} else if commands[0].Cmd != "ping" {
+	cmd := findCommand(myCmd.Cmd)
+	if cmd.Action == nil {
 		t.Error("Command not found")
-	} else {
-		// removes command added
-		commands = commands[:commands.Len()-1]
 	}
 }
 
 func TestAddCommand(t *testing.T) {
 
+	cmdName := "foo"
 	AddCommand(
-		"foo",
+		cmdName,
 		"another test",
 		func(args []string) {},
 	)
 
-	if commands.Len() != 1 {
-		t.Error("The command wasn't added")
-	} else if commands[0].Cmd != "foo" {
+	cmd := findCommand(cmdName)
+	if cmd.Action == nil {
 		t.Error("Command not found")
-	} else {
-		// removes command added
-		commands = commands[:commands.Len()-1]
 	}
 }
