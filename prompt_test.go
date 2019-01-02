@@ -14,7 +14,11 @@ func TestStart(t *testing.T) {
 
 	if commands.Len() == 0 {
 		t.Error("No command found")
-	} else if commands[0].Cmd != "gc" {
+	}
+
+	gcCmdName := "gc"
+	cmd := findCommand(gcCmdName)
+	if cmd.Cmd != gcCmdName {
 		t.Errorf("GC command not found but '%s'\n", commands[0].Cmd)
 	}
 }
