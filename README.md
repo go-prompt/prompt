@@ -1,15 +1,17 @@
-#Prompt [![Build Status](https://travis-ci.org/go-prompt/prompt.svg?branch=master)](https://travis-ci.org/go-prompt/prompt) [![Coverage Status](https://coveralls.io/repos/go-prompt/prompt/badge.svg)](https://coveralls.io/r/go-prompt/prompt) [![GoDoc](https://godoc.org/github.com/go-prompt/prompt?status.svg)](http://godoc.org/github.com/go-prompt/prompt)
+# Prompt
+
+[![Build Status](https://travis-ci.org/go-prompt/prompt.svg?branch=master)](https://travis-ci.org/go-prompt/prompt) [![Coverage Status](https://coveralls.io/repos/go-prompt/prompt/badge.svg)](https://coveralls.io/r/go-prompt/prompt) [![GoDoc](https://godoc.org/github.com/go-prompt/prompt?status.svg)](http://godoc.org/github.com/go-prompt/prompt)
 
 This Go package provides a dead simple 'terminal-prompt-like' for your application.
 
 
-#Install
+## Install
 There is no extra dependencies, just a [Go environment](http://golang.org/doc/install) is needed. Then:
 ~~~
 $ go get gopkg.in/prompt.v1
 ~~~
 
-#Use
+## Use
 Here you can see an example about how to add a custom command.
 ~~~ go
 package main
@@ -38,5 +40,5 @@ func main() {
 
 This example will show a _terminal-prompt-shell-like_, where you can try your custom command '**ping**'. Or just type '**quit**' to close it. For a list of commands type '**help**'. You can see this in action **[here](https://asciinema.org/a/11556)**.
 
-#TODO
+## TODO
 - [ ] a wrapper for _exec.Command_ (from _os_ standard library).
